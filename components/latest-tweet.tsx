@@ -25,7 +25,7 @@ export default function LatestTweet() {
       author: {
         name: "Raghav Mrituanjaya",
         username: "raghav_trader",
-        profile_image_url: "/placeholder.svg?height=40&width=40",
+        profile_image_url: "/RaghavPic.JPG",
       },
     };
 
@@ -91,6 +91,8 @@ export default function LatestTweet() {
                 <Image
                   src={tweet.author.profile_image_url || "/placeholder.svg"}
                   alt={tweet.author.name}
+                  width={40}
+                  height={40}
                   className="w-12 h-12 rounded-full"
                 />
                 <div className="flex-1">

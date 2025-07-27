@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import StatusBar from "./status-bar";
 
 export default function Navigation() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -41,38 +42,35 @@ export default function Navigation() {
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10"
-    >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex justify-between items-center">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="text-xl font-bold text-white"
-          >
-            RM
-          </motion.div>
-          <div className="flex space-x-8">
-            {navItems.map((item) => (
-              <motion.button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`text-sm font-medium transition-colors ${
-                  activeSection === item.id
-                    ? "text-blue-400"
-                    : "text-white/70 hover:text-white"
-                }`}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {item.label}
-              </motion.button>
-            ))}
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-md border-b border-white/10"
+      >
+        <div className="container mx-auto px-8 py-4">
+          <div className="flex justify-between items-center">
+            <div className="flex space-x-8">
+              {navItems.map((item) => (
+                <motion.button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`text-sm font-medium transition-colors ${
+                    activeSection === item.id
+                      ? "text-blue-400"
+                      : "text-white/70 hover:text-white"
+                  }`}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {item.label}
+                </motion.button>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </motion.nav>
+        <StatusBar />
+      </motion.nav>
+    </>
   );
 }

@@ -29,7 +29,10 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-20 relative">
+    <section
+      id="about"
+      className="py-20 relative bg-[#1e3a8a]" // Added consistent background color
+    >
       <div className="container mx-auto px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}

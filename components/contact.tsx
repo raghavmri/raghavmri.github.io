@@ -3,15 +3,9 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import {
-  Mail,
-  Github,
-  Twitter,
-  Linkedin,
-  Instagram,
-  MapPin,
-} from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Contact() {
   const ref = useRef(null);
@@ -24,39 +18,47 @@ export default function Contact() {
       href: "mailto:raghav@gamicgo.xyz",
       color: "hover:text-red-400",
       description: "raghav@gamicgo.xyz",
+      useIcon: true, // Keep using Lucide icon for email
     },
     {
       name: "GitHub",
-      icon: Github,
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
       href: "https://github.com/raghavmri",
       color: "hover:text-gray-400",
       description: "@raghavmri",
+      brandColor: true,
     },
     {
       name: "Twitter",
-      icon: Twitter,
+      logo: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg",
       href: "https://twitter.com/raghav_mri",
       color: "hover:text-blue-400",
       description: "@raghav_mri",
+      brandColor: true,
     },
     {
       name: "LinkedIn",
-      icon: Linkedin,
+      logo: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png",
       href: "https://www.linkedin.com/in/raghav-mrituanjaya-93aa421a6/",
       color: "hover:text-blue-600",
       description: "Raghav Mrituanjaya",
+      brandColor: true,
     },
     {
       name: "Instagram",
-      icon: Instagram,
+      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png",
       href: "https://instagram.com/raghavmri",
       color: "hover:text-pink-400",
       description: "@raghavmri",
+      brandColor: true,
     },
   ];
 
   return (
-    <section id="contact" className="py-20 relative">
+    <section
+      id="contact"
+      className="py-20 relative bg-[#1e3a8a]" // Added consistent background color
+    >
       <div className="container mx-auto px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -84,7 +86,7 @@ export default function Contact() {
             <div className="flex items-center justify-center space-x-2 mb-6">
               <MapPin className="w-5 h-5 text-blue-400" />
               <span className="text-white/80">
-                Based in Chennai, India But Available Worldwide 🤞
+                🏝️ Chennai Roots, Global Reach — Ping Me Anywhere, Anytime 🌐💬
               </span>
             </div>
 
@@ -124,7 +126,20 @@ export default function Contact() {
                 className={`bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 group ${link.color}`}
               >
                 <div className="flex items-center space-x-4">
-                  <link.icon className="w-6 h-6 text-white/70 group-hover:scale-110 transition-transform" />
+                  {link.useIcon ? (
+                    <link.icon className="w-6 h-6 text-white/70 group-hover:scale-110 transition-transform" />
+                  ) : (
+                    <div className="w-6 h-6 relative group-hover:scale-110 transition-transform">
+                      <Image
+                        src={(link.logo as string) || ""}
+                        alt={`${link.name} logo`}
+                        width={24}
+                        height={24}
+                        className="transition-all duration-300"
+                        unoptimized
+                      />
+                    </div>
+                  )}
                   <div>
                     <h3 className="font-medium text-white group-hover:text-current transition-colors">
                       {link.name}
@@ -144,7 +159,7 @@ export default function Contact() {
           className="text-center mt-16 pt-8 border-t border-white/10"
         >
           <p className="text-white/40 text-sm">
-            © 2024 Raghav Mrituanjaya. Built with Next.js and lots of ☕
+            © {new Date().getFullYear()} Raghav Mrituanjaya.
           </p>
         </motion.div>
       </div>
