@@ -34,3 +34,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Firebase specific files and directories
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+.firebaserc 
+
+
+# VsCode settings
+.vscode/
