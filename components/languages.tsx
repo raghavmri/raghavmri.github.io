@@ -6,25 +6,25 @@ export default function LanguagesKnown() {
     {
       name: "Tamil",
       proficiency: "Native",
-      icon: "/placeholder.svg?height=40&width=40",
+      icon: "/language-icons/tamil.png",
       alt: "India flag icon",
     },
     {
       name: "Saurashtra",
       proficiency: "Native",
-      icon: "/placeholder.svg?height=40&width=40",
+      icon: "/language-icons/saurashtra.png",
       alt: "Language icon",
     },
     {
       name: "English",
       proficiency: "Advanced",
-      icon: "/placeholder.svg?height=40&width=40",
+      icon: "/language-icons/english.png",
       alt: "UK flag icon",
     },
     {
       name: "French",
       proficiency: "Learning",
-      icon: "/placeholder.svg?height=40&width=40",
+      icon: "/language-icons/french.png",
       alt: "France flag icon",
     },
   ];
