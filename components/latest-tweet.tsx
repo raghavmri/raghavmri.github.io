@@ -1,149 +1,82 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
-import { Twitter, Heart, MessageCircle, Repeat2 } from "lucide-react";
-import Image from "next/image";
+import { Tweet } from "react-tweet";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Eye, X } from "lucide-react";
 
-export default function LatestTweet() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [tweet, setTweet] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+const tweets = [
+  "1865637106980458832",
+  "1942604150556241973",
+  "1751606839937204371",
+];
 
-  // Mock tweet data (replace with actual Twitter API integration)
-  useEffect(() => {
-    const mockTweet = {
-      text: "Just backtested a new momentum strategy and the results are promising! 📈 The combination of RSI divergence and volume analysis is showing consistent alpha. Time to paper trade this for a month before going live. #Trading #FinTech #AlgoTrading",
-      created_at: "2024-01-15T10:30:00Z",
-      public_metrics: {
-        like_count: 89,
-        retweet_count: 23,
-        reply_count: 15,
-      },
-      author: {
-        name: "Raghav Mrituanjaya",
-        username: "raghav_trader",
-        profile_image_url: "/RaghavPic.JPG",
-      },
-    };
-
-    setTimeout(() => {
-      setTweet(mockTweet);
-      setLoading(false);
-    }, 1000);
-  }, []);
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
+export default function TopTweets() {
+  const [open, setOpen] = useState(false);
 
   return (
-    <section className="py-20 relative">
-      <div className="container mx-auto px-6" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Latest Tweet
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto mb-8"></div>
-          <p className="text-white/80 text-lg">
-            Fresh thoughts from my Twitter feed
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-2xl mx-auto"
-        >
-          {loading ? (
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <div className="animate-pulse">
-                <div className="flex items-center space-x-4 mb-4">
-                  <div className="w-12 h-12 bg-white/20 rounded-full"></div>
-                  <div className="space-y-2">
-                    <div className="h-4 bg-white/20 rounded w-32"></div>
-                    <div className="h-3 bg-white/20 rounded w-24"></div>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="h-4 bg-white/20 rounded"></div>
-                  <div className="h-4 bg-white/20 rounded w-3/4"></div>
-                </div>
-              </div>
-            </div>
-          ) : tweet ? (
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-colors">
-              <div className="flex items-start space-x-4">
-                <Image
-                  src={tweet.author.profile_image_url || "/placeholder.svg"}
-                  alt={tweet.author.name}
-                  width={40}
-                  height={40}
-                  className="w-12 h-12 rounded-full"
-                />
-                <div className="flex-1">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <h3 className="font-semibold text-white">
-                      {tweet.author.name}
-                    </h3>
-                    <span className="text-white/60 text-sm">
-                      @{tweet.author.username}
-                    </span>
-                    <span className="text-white/40 text-sm">·</span>
-                    <span className="text-white/60 text-sm">
-                      {formatDate(tweet.created_at)}
-                    </span>
-                  </div>
-                  <p className="text-white/80 leading-relaxed mb-4">
-                    {tweet.text}
-                  </p>
-
-                  <div className="flex items-center space-x-6 text-white/60">
-                    <div className="flex items-center space-x-2 hover:text-blue-400 transition-colors cursor-pointer">
-                      <MessageCircle className="w-4 h-4" />
-                      <span className="text-sm">
-                        {tweet.public_metrics.reply_count}
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-2 hover:text-green-400 transition-colors cursor-pointer">
-                      <Repeat2 className="w-4 h-4" />
-                      <span className="text-sm">
-                        {tweet.public_metrics.retweet_count}
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-2 hover:text-red-400 transition-colors cursor-pointer">
-                      <Heart className="w-4 h-4" />
-                      <span className="text-sm">
-                        {tweet.public_metrics.like_count}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <Twitter className="w-6 h-6 text-blue-400" />
-              </div>
-            </div>
-          ) : (
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 text-center">
-              <Twitter className="w-12 h-12 text-white/40 mx-auto mb-4" />
-              <p className="text-white/60">Unable to load latest tweet</p>
-            </div>
-          )}
-        </motion.div>
+    <section className="p-6 bg-[#1e3a8a] text-white rounded-xl shadow-lg max-w-6xl mx-auto">
+      <h2 className="text-2xl font-bold mb-4">🔥 Top Tweets</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {tweets.slice(0, 2).map((id) => (
+          <motion.div
+            key={id}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="rounded-lg overflow-hidden shadow-md"
+          >
+            <Tweet id={id} />
+          </motion.div>
+        ))}
       </div>
+
+      <button
+        onClick={() => setOpen(true)}
+        className="flex items-center gap-2 mt-6 text-sm font-medium text-white hover:text-blue-300 transition"
+      >
+        <Eye className="w-4 h-4" />
+        See More Tweets
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-md flex justify-center items-center z-50 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="bg-white rounded-2xl p-6 w-full max-w-5xl h-[85vh] max-h-[85vh] overflow-y-auto relative"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            >
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <h3 className="text-xl font-semibold mb-6 text-[#1e3a8a]">
+                📋 All Top Tweets
+              </h3>
+              <div className="space-y-10">
+                {tweets.map((id, index) => (
+                  <div key={id}>
+                    <div className="text-[#1e3a8a] font-semibold mb-2">
+                      #{index + 1}
+                    </div>
+                    <Tweet id={id} />
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

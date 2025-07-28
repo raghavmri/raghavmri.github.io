@@ -11,6 +11,7 @@ import {
   FloatingElements,
   ScrollProgress,
 } from "@/components/enhanced-animations";
+import LanguagesKnown from "@/components/languages";
 
 export default function Portfolio() {
   const [mounted, setMounted] = useState(false);
@@ -31,7 +32,8 @@ export default function Portfolio() {
         <About />
         <TechStack />
         <Projects />
-        {/* <LatestTweet /> */}
+        <LanguagesKnown />
+        <LatestTweet />
         <Contact />
       </main>
     </div>
