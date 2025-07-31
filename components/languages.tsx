@@ -8,24 +8,35 @@ export default function LanguagesKnown() {
       proficiency: "Native",
       icon: "/language-icons/tamil.png",
       alt: "India flag icon",
+      funnyNote: "Fluent-aa pesuven 🤌🏽",
     },
     {
       name: "Saurashtra",
       proficiency: "Native",
       icon: "/language-icons/saurashtra.png",
       alt: "Language icon",
+      funnyNote: "Only we understand us 🌀",
     },
     {
       name: "English",
       proficiency: "Advanced",
       icon: "/language-icons/english.png",
       alt: "UK flag icon",
+      funnyNote: "Fluent until grammar attacks ⚔️",
     },
     {
       name: "French",
       proficiency: "Learning",
       icon: "/language-icons/french.png",
       alt: "France flag icon",
+      funnyNote: "Oui oui… croissant? 🥐",
+    },
+    {
+      name: "Telugu",
+      proficiency: "Learning",
+      icon: "/language-icons/telugu.png",
+      alt: "India flag icon",
+      funnyNote: "Baagane vundi... I think? 🤔",
     },
   ];
 
@@ -42,25 +53,43 @@ export default function LanguagesKnown() {
             </p>
           </div>
         </div>
-        <div className="mx-auto grid max-w-6xl items-start gap-6 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+
+        <div className="mx-auto grid max-w-6xl items-start gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
           {languages.map((lang, index) => (
             <div
               key={index}
-              className="flex items-center justify-between gap-4 p-3 rounded-lg bg-white/10 transition-all duration-300 hover:scale-[1.02] hover:bg-white/20 w-full max-w-xs mx-auto"
+              className="relative flex flex-col gap-3 p-4 pt-10 rounded-xl bg-white/10 transition-all duration-300 hover:scale-[1.02] hover:bg-white/20 w-full max-w-xs mx-auto"
             >
-              <div className="flex items-center gap-3">
-                <Image
-                  src={lang.icon || "/placeholder.svg"}
-                  width={32}
-                  height={32}
-                  alt={lang.alt}
-                  className="rounded-full object-cover"
-                />
-                <h3 className="text-lg font-semibold">{lang.name}</h3>
+              {/* Cloud badge */}
+              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                <div className="px-4 py-1 bg-white text-[#1e3a8a] rounded-full text-xs font-semibold shadow-md flex items-center gap-1">
+                  <svg
+                    className="w-4 h-4 text-[#1e3a8a]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 4a4 4 0 00-3.464 6.032A3 3 0 0010 16h6a3 3 0 001-5.83A4 4 0 0010 4z" />
+                  </svg>
+                  {lang.funnyNote}
+                </div>
               </div>
-              <Badge variant="secondary" className="text-sm px-2 py-1">
-                {lang.proficiency}
-              </Badge>
+
+              {/* Language card */}
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <Image
+                    src={lang.icon || "/placeholder.svg"}
+                    width={32}
+                    height={32}
+                    alt={lang.alt}
+                    className="rounded-full object-cover"
+                  />
+                  <h3 className="text-lg font-semibold">{lang.name}</h3>
+                </div>
+                <Badge variant="secondary" className="text-sm px-2 py-1">
+                  {lang.proficiency}
+                </Badge>
+              </div>
             </div>
           ))}
         </div>
