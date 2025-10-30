@@ -12,6 +12,7 @@ import {
   ScrollProgress,
 } from "@/components/enhanced-animations";
 import LanguagesKnown from "@/components/languages";
+import SpotifyListening from "@/components/spotify";
 
 export default function Portfolio() {
   const [mounted, setMounted] = useState(false);
@@ -33,6 +34,7 @@ export default function Portfolio() {
         <TechStack />
         <Projects />
         <LanguagesKnown />
+        <SpotifyListening />
         <LatestTweet />
         <Contact />
       </main>
