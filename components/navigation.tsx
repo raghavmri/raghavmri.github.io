@@ -1,76 +1,114 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import StatusBar from "./status-bar";
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import StatusBar from './status-bar';
 
 export default function Navigation() {
-  const [activeSection, setActiveSection] = useState("hero");
+	const [activeSection, setActiveSection] = useState('hero');
 
-  const navItems = [
-    { id: "hero", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "tech", label: "Tech" },
-    { id: "projects", label: "Projects" },
-    { id: "contact", label: "Contact" },
-  ];
+	const navItems = [
+		{ id: 'hero', label: 'Home' },
+		{ id: 'about', label: 'About' },
+		{ id: 'tech', label: 'Tech' },
+		{ id: 'projects', label: 'Projects' },
+		{ id: 'contact', label: 'Contact' },
+	];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = navItems.map((item) => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 100;
+	useEffect(() => {
+		const handleScroll = () => {
+			const sections = navItems.map((item) => document.getElementById(item.id));
+			const scrollPosition = window.scrollY + 100;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navItems[i].id);
-          break;
-        }
-      }
-    };
+			for (let i = sections.length - 1; i >= 0; i--) {
+				const section = sections[i];
+				if (section && section.offsetTop <= scrollPosition) {
+					setActiveSection(navItems[i].id);
+					break;
+				}
+			}
+		};
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+	const scrollToSection = (sectionId: string) => {
+		const element = document.getElementById(sectionId);
+		if (element) {
+			element.scrollIntoView({ behavior: 'smooth' });
+		}
+	};
 
-  return (
-    <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-md border-b border-white/10"
-      >
-        <div className="container mx-auto px-8 py-4">
-          <div className="flex justify-between items-center">
-            <div className="flex space-x-8">
-              {navItems.map((item) => (
-                <motion.button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`text-sm font-medium transition-colors ${
-                    activeSection === item.id
-                      ? "text-blue-400"
-                      : "text-white/70 hover:text-white"
-                  }`}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {item.label}
-                </motion.button>
-              ))}
-            </div>
-          </div>
-        </div>
-        <StatusBar />
-      </motion.nav>
-    </>
-  );
+	return (
+		<>
+			<motion.nav
+				initial={{ y: -100, opacity: 0 }}
+				animate={{ y: 0, opacity: 1 }}
+				transition={{
+					type: 'spring',
+					stiffness: 100,
+					damping: 20,
+					duration: 0.8,
+				}}
+				className='fixed top-8 left-1/2 -translate-x-1/2 z-50 w-auto'
+			>
+				<motion.div
+					className='bg-black border border-white/20 rounded-full px-6 py-3 shadow-2xl'
+					whileHover={{ scale: 1.02 }}
+					transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+				>
+					<div className='flex items-center space-x-1'>
+						{navItems.map((item, index) => (
+							<motion.button
+								key={item.id}
+								onClick={() => scrollToSection(item.id)}
+								className='relative px-4 py-2 text-sm font-medium transition-colors rounded-full'
+								initial={{ opacity: 0, y: -20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ delay: index * 0.1 }}
+								whileHover={{ scale: 1.05 }}
+								whileTap={{ scale: 0.95 }}
+							>
+								{activeSection === item.id && (
+									<motion.div
+										layoutId='activeSection'
+										className='absolute inset-0 bg-white rounded-full'
+										transition={{
+											type: 'spring',
+											stiffness: 380,
+											damping: 30,
+										}}
+									/>
+								)}
+								<span
+									className={`relative z-10 ${
+										activeSection === item.id ? 'text-black' : 'text-white/70'
+									}`}
+								>
+									{item.label}
+								</span>
+							</motion.button>
+						))}
+					</div>
+				</motion.div>
+
+				{/* Decorative glow effect */}
+				<motion.div
+					className='absolute inset-0 -z-10 rounded-full bg-white/5 blur-xl'
+					animate={{
+						scale: [1, 1.1, 1],
+						opacity: [0.3, 0.5, 0.3],
+					}}
+					transition={{
+						duration: 3,
+						repeat: Infinity,
+						ease: 'easeInOut',
+					}}
+				/>
+			</motion.nav>
+			<StatusBar />
+		</>
+	);
 }
