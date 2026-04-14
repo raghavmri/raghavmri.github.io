@@ -158,7 +158,7 @@ export default function Contact() {
 					className='text-center mt-16 pt-8 border-t border-white/10'
 				>
 					<p className='text-white/40 text-sm'>
-						© {new Date().getFullYear()} Raghav Mrituanjaya.
+						Made with ❤️ by Raghav Mrituanjaya | © {new Date().getFullYear()}
 					</p>
 				</motion.div>
 			</div>
