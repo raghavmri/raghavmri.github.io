@@ -15,7 +15,7 @@ export default function LanguagesKnown() {
 			proficiency: 'Native',
 			icon: '/language-icons/saurashtra.png',
 			alt: 'Language icon',
-			funnyNote: 'Only we understand us 🌀',
+			funnyNote: 'Anga Onda Kalai Illa 🌀',
 		},
 		{
 			name: 'English',
@@ -24,20 +24,20 @@ export default function LanguagesKnown() {
 			alt: 'UK flag icon',
 			funnyNote: 'Fluent until grammar attacks ⚔️',
 		},
-		{
-			name: 'French',
-			proficiency: 'Learning',
-			icon: '/language-icons/french.png',
-			alt: 'France flag icon',
-			funnyNote: 'Oui oui… croissant? 🥐',
-		},
-		{
-			name: 'Telugu',
-			proficiency: 'Learning',
-			icon: '/language-icons/telugu.png',
-			alt: 'India flag icon',
-			funnyNote: 'Baagane vundi... I think? 🤔',
-		},
+		// {
+		// 	name: 'French',
+		// 	proficiency: 'Learning',
+		// 	icon: '/language-icons/french.png',
+		// 	alt: 'France flag icon',
+		// 	funnyNote: 'Oui oui… croissant? 🥐',
+		// },
+		// {
+		// 	name: 'Telugu',
+		// 	proficiency: 'Learning',
+		// 	icon: '/language-icons/telugu.png',
+		// 	alt: 'India flag icon',
+		// 	funnyNote: 'Baagane vundi... I think? 🤔',
+		// },
 	];
 
 	return (

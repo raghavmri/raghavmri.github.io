@@ -39,7 +39,7 @@ export default function Contact() {
 		{
 			name: 'LinkedIn',
 			logo: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png',
-			href: 'https://www.linkedin.com/in/raghav-mrituanjaya-93aa421a6/',
+			href: 'https://www.linkedin.com/in/raghavmri//',
 			color: 'hover:text-white',
 			description: 'Raghav Mrituanjaya',
 			brandColor: true,

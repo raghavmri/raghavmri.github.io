@@ -4,6 +4,7 @@ import Hero from '@/components/hero';
 import About from '@/components/about';
 import TechStack from '@/components/tech-stack';
 import Projects from '@/components/projects';
+import Honors from '@/components/honors';
 import Contact from '@/components/contact';
 import Navigation from '@/components/navigation';
 import { FloatingElements, ScrollProgress } from '@/components/enhanced-animations';
@@ -28,6 +29,7 @@ export default function Portfolio() {
 				<About />
 				<TechStack />
 				<Projects />
+				<Honors />
 				<LanguagesKnown />
 				<Contact />
 			</main>

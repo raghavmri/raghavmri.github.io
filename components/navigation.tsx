@@ -12,6 +12,7 @@ export default function Navigation() {
 		{ id: 'about', label: 'About' },
 		{ id: 'tech', label: 'Tech' },
 		{ id: 'projects', label: 'Projects' },
+		{ id: 'honors', label: 'Honors' },
 		{ id: 'contact', label: 'Contact' },
 	];
 

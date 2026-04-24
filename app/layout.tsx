@@ -9,8 +9,31 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-	title: 'Raghav Mriuanjaya',
-	description: 'A portfolio website showcasing my work and projects.',
+	title: 'Raghav Mriuanjaya | Portfolio',
+	description:
+		'Strategic Computer Science student specializing in Data Science, financial markets, and cybersecurity. Passionate about transforming complex datasets into actionable insights.',
+	keywords: [
+		'Data Science',
+		'Cybersecurity',
+		'Financial Markets',
+		'Computer Science',
+		'Data Analytics',
+		'Portfolio',
+	],
+	openGraph: {
+		title: 'Raghav Mriuanjaya | Portfolio',
+		description:
+			'Strategic Computer Science student specializing in Data Science, financial markets, and cybersecurity. Passionate about transforming complex datasets into actionable insights.',
+		url: 'https://raghav.com', // Replace with your actual domain
+		siteName: 'Raghav Mriuanjaya',
+		type: 'website',
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: 'Raghav Mriuanjaya | Portfolio',
+		description:
+			'Strategic Computer Science student specializing in Data Science, financial markets, and cybersecurity. Passionate about transforming complex datasets into actionable insights.',
+	},
 };
 
 export default function RootLayout({

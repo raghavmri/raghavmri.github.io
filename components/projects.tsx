@@ -10,40 +10,35 @@ export default function Projects() {
 
 	const projects = [
 		{
-			title: 'Algorithmic Trading Platform',
-			description:
-				'A comprehensive trading platform with real-time market data, backtesting capabilities, and automated strategy execution. Features include risk management, portfolio optimization, and performance analytics.',
-			tech: ['React', 'Node.js', 'Python', 'Alpha Vantage API'],
+			title: 'CCTV Event Clip Extraction Pipeline',
+			year: '2026',
+			description: [
+				'Engineered a production-ready computer vision pipeline utilizing OpenCV (MOG2) for motion filtering and YOLOv8 with ByteTrack to detect, track, and extract meaningful activity from long surveillance footage.',
+				'Developed a full-stack Flask web application featuring real-time processing analytics and dynamic clip playback, integrating FFmpeg (H.265/H.264) to optimize video compression and reduce storage requirements.',
+			],
+			tech: [
+				'Python',
+				'OpenCV',
+				'YOLOv8',
+				'ByteTrack',
+				'Flask',
+				'FFmpeg',
+				'Computer Vision',
+			],
 			github: 'https://github.com',
 			live: 'https://example.com',
 			color: 'from-blue-500 to-cyan-600',
 		},
 		{
-			title: 'Stock Market Analytics Dashboard',
-			description:
-				'Real-time stock market dashboard with advanced charting, technical indicators, and sentiment analysis. Includes portfolio tracking, watchlist management, and automated alerts for price movements.',
-			tech: ['Next.js', 'TypeScript', 'TradingView', 'WebSocket'],
+			title: 'Secure LLM Conversation Pipeline',
+			year: '2026',
+			description: [
+				'Engineered a privacy-preserving LLM workflow demo that combines role-based prompt controls, encrypted payloads, and blockchain audit anchoring.',
+			],
+			tech: ['LLM', 'Cryptography', 'Blockchain', 'Privacy', 'Security'],
 			github: 'https://github.com',
 			live: 'https://example.com',
-			color: 'from-green-500 to-blue-600',
-		},
-		{
-			title: 'Portfolio Risk Management Tool',
-			description:
-				'Advanced portfolio management system with risk assessment, diversification analysis, and performance tracking. Features Monte Carlo simulations and Value at Risk calculations.',
-			tech: ['React', 'Python', 'Pandas', 'NumPy'],
-			github: 'https://github.com',
-			live: 'https://example.com',
-			color: 'from-orange-500 to-blue-600',
-		},
-		{
-			title: 'Crypto Trading Bot',
-			description:
-				'Automated cryptocurrency trading bot with machine learning-based predictions, technical analysis, and risk management. Supports multiple exchanges and trading pairs.',
-			tech: ['Python', 'TensorFlow', 'Binance API', 'Redis'],
-			github: 'https://github.com',
-			live: 'https://example.com',
-			color: 'from-purple-500 to-blue-600',
+			color: 'from-purple-500 to-pink-600',
 		},
 	];
 
@@ -72,7 +67,7 @@ export default function Projects() {
 					</p>
 				</motion.div>
 
-				<div className='grid md:grid-cols-2 gap-8'>
+				<div className='grid md:grid-cols-1 lg:grid-cols-2 gap-8'>
 					{projects.map((project, index) => (
 						<motion.div
 							key={project.title}
@@ -88,12 +83,29 @@ export default function Projects() {
 							></div>
 
 							<div className='p-8 relative z-10'>
-								<h3 className='text-2xl font-semibold text-white mb-4 group-hover:text-white transition-colors'>
-									{project.title}
-								</h3>
-								<p className='text-white/70 text-base mb-6 leading-relaxed'>
-									{project.description}
-								</p>
+								<div className='flex justify-between items-start mb-4'>
+									<h3 className='text-2xl font-semibold text-white group-hover:text-white transition-colors flex-1'>
+										{project.title}
+									</h3>
+									<span className='text-sm font-medium text-white/60 ml-4 whitespace-nowrap'>
+										{project.year}
+									</span>
+								</div>
+
+								{Array.isArray(project.description) ? (
+									<ul className='text-white/70 text-base mb-6 leading-relaxed space-y-3'>
+										{project.description.map((item, idx) => (
+											<li key={idx} className='flex gap-3'>
+												<span className='text-white/40 shrink-0 mt-1'>•</span>
+												<span>{item}</span>
+											</li>
+										))}
+									</ul>
+								) : (
+									<p className='text-white/70 text-base mb-6 leading-relaxed'>
+										{project.description}
+									</p>
+								)}
 
 								<div className='flex flex-wrap gap-2'>
 									{project.tech.map((tech) => (
