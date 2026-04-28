@@ -7,7 +7,7 @@ import StatusBar from './status-bar';
 export default function Navigation() {
 	const [activeSection, setActiveSection] = useState('hero');
 	const [isVisible, setIsVisible] = useState(true);
-	const lastActivityRef = useRef(Date.now());
+	const lastScrollY = useRef(0);
 
 	const navItems = [
 		{ id: 'hero', label: 'Home' },
@@ -19,15 +19,20 @@ export default function Navigation() {
 	];
 
 	useEffect(() => {
-		const handleActivity = () => {
-			setIsVisible(true);
-			lastActivityRef.current = Date.now();
-		};
-
 		const handleScroll = () => {
-			handleActivity();
+			const currentScrollY = window.scrollY;
+
+			// Hide on scroll down, show on scroll up
+			if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
+				setIsVisible(false);
+			} else {
+				setIsVisible(true);
+			}
+			lastScrollY.current = currentScrollY;
+
+			// Update active section
 			const sections = navItems.map((item) => document.getElementById(item.id));
-			const scrollPosition = window.scrollY + 100;
+			const scrollPosition = currentScrollY + 100;
 
 			for (let i = sections.length - 1; i >= 0; i--) {
 				const section = sections[i];
@@ -38,23 +43,10 @@ export default function Navigation() {
 			}
 		};
 
-		window.addEventListener('scroll', handleScroll);
-		window.addEventListener('mousemove', handleActivity);
-		window.addEventListener('touchstart', handleActivity);
-		window.addEventListener('keydown', handleActivity);
-
-		const idleCheck = window.setInterval(() => {
-			if (Date.now() - lastActivityRef.current >= 2000) {
-				setIsVisible(false);
-			}
-		}, 250);
+		window.addEventListener('scroll', handleScroll, { passive: true });
 
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
-			window.removeEventListener('mousemove', handleActivity);
-			window.removeEventListener('touchstart', handleActivity);
-			window.removeEventListener('keydown', handleActivity);
-			window.clearInterval(idleCheck);
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
@@ -73,10 +65,8 @@ export default function Navigation() {
 				animate={{ y: isVisible ? 0 : -120, opacity: isVisible ? 1 : 0 }}
 				transition={{
 					type: 'spring',
-					stiffness: 100,
-					damping: 20,
-					duration: 0.8,
-					delay: 0.1,
+					stiffness: 200,
+					damping: 30,
 				}}
 				className='fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] sm:w-auto max-w-full'
 			>

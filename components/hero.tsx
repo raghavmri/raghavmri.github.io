@@ -210,7 +210,7 @@ export default function Hero() {
 	return (
 		<section
 			id='hero'
-			className='min-h-screen flex items-center justify-center relative overflow-hidden pt-64 md:pt-80'
+			className='min-h-screen relative overflow-hidden pt-28 pb-16'
 		>
 			<div className='absolute inset-0'>
 				{[...Array(20)].map((_, i) => (
