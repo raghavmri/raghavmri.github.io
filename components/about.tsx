@@ -33,13 +33,13 @@ export default function About() {
 	];
 
 	return (
-		<section id='about' className='py-20 relative'>
+		<section id='about' className='py-20 md:py-24 relative'>
 			<div className='container mx-auto px-6' ref={ref}>
 				<motion.div
 					initial={{ opacity: 0, y: 50 }}
 					animate={isInView ? { opacity: 1, y: 0 } : {}}
 					transition={{ duration: 0.8 }}
-					className='text-center mb-16'
+					className='text-center mb-14 md:mb-16'
 				>
 					<h2 className='text-4xl md:text-5xl font-bold text-white mb-6'>
 						About Me
@@ -60,17 +60,18 @@ export default function About() {
 								My love affair with blinking lights and circuits started so early,
 								my first words were probably in binary. By the time 10th grade
 								rolled around, I was diving headfirst into the chaotic world of
-								programming and web development. (Yes, I definitely thought breaking
-								a CSS layout meant the world was ending.)
+								programming and web development. (Yes, I definitely thought
+								breaking a CSS layout meant the world was ending.)
 							</p>
 							<p className='text-white/80 leading-relaxed mt-4'>
-								Naturally, by 11th grade, I hit my &apos;rebellious hacker&apos; phase. I swapped
-								colorful web buttons for a dark terminal, put on an oversized
-								hoodie, and ventured into the mysterious arts of cybersecurity.
-								Fast forward a bit, and I somehow traded those hacker dreams
-								to obsess over candle charts, diving deep into the terrifying yet
-								thrilling rollercoaster of personal finance and the stock market!
-								From debugging loops to analyzing bull markets, it has been a wild ride.
+								Naturally, by 11th grade, I hit my &apos;rebellious hacker&apos;
+								phase. I swapped colorful web buttons for a dark terminal, put on
+								an oversized hoodie, and ventured into the mysterious arts of
+								cybersecurity. Fast forward a bit, and I somehow traded those
+								hacker dreams to obsess over candle charts, diving deep into the
+								terrifying yet thrilling rollercoaster of personal finance and the
+								stock market! From debugging loops to analyzing bull markets, it
+								has been a wild ride.
 							</p>
 						</div>
 					</motion.div>
@@ -93,10 +94,14 @@ export default function About() {
 								className='bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-colors'
 							>
 								<div className='flex items-start space-x-4'>
-									<hobby.icon className='w-6 h-6 text-blue-400 mt-1 flex-shrink-0' />
+									<hobby.icon className='w-6 h-6 text-blue-400 mt-1' />
 									<p className='text-sm leading-relaxed'>
-										<span className='text-white/90 font-medium'>{hobby.title}</span>{' '}
-										<span className='text-white/50 italic'>({hobby.description})</span>
+										<span className='text-white/90 font-medium'>
+											{hobby.title}
+										</span>{' '}
+										<span className='text-white/50 italic'>
+											({hobby.description})
+										</span>
 									</p>
 								</div>
 							</motion.div>

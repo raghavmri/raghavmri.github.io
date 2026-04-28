@@ -51,13 +51,13 @@ export default function Honors() {
 	});
 
 	return (
-		<section id='honors' className='py-20 relative' ref={ref}>
+		<section id='honors' className='py-20 md:py-24 relative' ref={ref}>
 			<div className='container mx-auto px-6'>
 				<motion.div
 					initial={{ opacity: 0, y: 50 }}
 					animate={isInView ? { opacity: 1, y: 0 } : {}}
 					transition={{ duration: 0.8 }}
-					className='text-center mb-16'
+					className='text-center mb-14 md:mb-16'
 				>
 					<h2 className='text-4xl md:text-5xl font-bold text-white mb-6'>
 						Honors & Awards

@@ -50,13 +50,13 @@ export default function Projects() {
 	};
 
 	return (
-		<section id='projects' className='py-20 relative'>
+		<section id='projects' className='py-20 md:py-24 relative'>
 			<div className='container mx-auto px-6' ref={ref}>
 				<motion.div
 					initial={{ opacity: 0, y: 50 }}
 					animate={isInView ? { opacity: 1, y: 0 } : {}}
 					transition={{ duration: 0.8 }}
-					className='text-center mb-16'
+					className='text-center mb-14 md:mb-16'
 				>
 					<h2 className='text-4xl md:text-5xl font-bold text-white mb-6'>
 						Featured Projects

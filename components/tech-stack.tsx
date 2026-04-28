@@ -148,7 +148,7 @@ export default function TechStack() {
 						}}
 					/>
 				</div>
-				<div className='text-3xl hidden mx-auto w-12 h-12 flex items-center justify-center'>
+				<div className='text-3xl hidden mx-auto w-12 h-12 items-center justify-center'>
 					{tech.name.charAt(0)}
 				</div>
 			</div>
@@ -160,13 +160,13 @@ export default function TechStack() {
 	);
 
 	return (
-		<section id='tech' className='py-20 relative'>
+		<section id='tech' className='py-20 md:py-24 relative'>
 			<div className='container mx-auto px-6' ref={ref}>
 				<motion.div
 					initial={{ opacity: 0, y: 50 }}
 					animate={isInView ? { opacity: 1, y: 0 } : {}}
 					transition={{ duration: 0.8 }}
-					className='text-center mb-16'
+					className='text-center mb-14 md:mb-16'
 				>
 					<h2 className='text-4xl md:text-5xl font-bold text-white mb-6'>
 						Tech Stack

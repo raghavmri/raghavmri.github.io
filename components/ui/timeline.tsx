@@ -24,7 +24,7 @@ const TimelineHeader = React.forwardRef<
 	<div
 		ref={ref}
 		className={cn(
-			'mb-1 flex flex-col items-start before:absolute before:left-2 before:h-full before:-translate-x-1/2 before:translate-y-3 before:self-start before:bg-white/20 before:px-px after:absolute after:left-2 after:box-content after:h-2 after:w-2 after:-translate-x-1/2 after:translate-y-1.5 after:rounded-full after:border-4 after:border-black after:bg-white sm:flex-row sm:before:left-0 sm:before:ml-40 sm:after:left-0 sm:after:ml-40',
+			'mb-1 flex flex-col items-start before:absolute before:left-2 before:h-full before:-translate-x-1/2 before:translate-y-3 before:self-start before:bg-white/20 before:px-px before:animate-pulse after:absolute after:left-2 after:box-content after:h-2 after:w-2 after:-translate-x-1/2 after:translate-y-1.5 after:rounded-full after:border-4 after:border-black after:bg-white after:animate-pulse after:shadow-[0_0_10px_#ffffff] sm:flex-row sm:before:left-0 sm:before:ml-40 sm:after:left-0 sm:after:ml-40',
 			className,
 		)}
 		{...props}

@@ -5,11 +5,13 @@ import { ChevronDown, Sparkles, Cloud, Sun, CloudRain, Thermometer } from 'lucid
 
 export default function Hero() {
 	const fullname = 'Raghav';
+	const subtitleText = 'Aspiring Data Scientist & Quantitative Analyst';
 
 	const [greeting, setGreeting] = useState('');
 	const [timeStatus, setTimeStatus] = useState('');
 	const [weather, setWeather] = useState<any>(null);
 	const [loading, setLoading] = useState(true);
+	const [typedSubtitle, setTypedSubtitle] = useState('');
 
 	const getTimeStatus = () => {
 		const now = new Date();
@@ -29,36 +31,36 @@ export default function Hero() {
 
 		if (hour >= 22 || hour < 7) {
 			return `${randomEmoji(
-				'sleeping'
+				'sleeping',
 			)} ${fullname} is likely sleep-coding or dreaming of semicolons`;
 		}
 		if (hour >= 7 && hour < 10) {
 			return `${randomEmoji(
-				'coffee'
+				'coffee',
 			)} Morning fuel detected — ${fullname} is booting up with caffeine`;
 		}
 		if (hour >= 10 && hour < 13) {
 			return `${randomEmoji(
-				'working'
+				'working',
 			)} Focus mode: ON. ${fullname} is grinding through code`;
 		}
 		if (hour >= 13 && hour < 15) {
 			return `${randomEmoji(
-				'food'
+				'food',
 			)} It's lunch o'clock! ${fullname} is probably devouring something delicious`;
 		}
 		if (hour >= 15 && hour < 18) {
 			return `${randomEmoji(
-				'working'
+				'working',
 			)} Afternoon hustle — ${fullname} is not slowing down`;
 		}
 		if (hour >= 18 && hour < 22) {
 			return `${randomEmoji(
-				'evening'
+				'evening',
 			)} Golden hour coding – ${fullname} might be fixing bugs or making dinner`;
 		}
 		return `${randomEmoji(
-			'working'
+			'working',
 		)} ${fullname} is probably doing something awesome right now!`;
 	};
 
@@ -77,16 +79,16 @@ export default function Hero() {
 			code === 0
 				? 'clear'
 				: code <= 3
-				? 'clouds'
-				: code >= 45 && code <= 48
-				? 'mist'
-				: code >= 51 && code <= 67
-				? 'rain'
-				: code >= 71 && code <= 86
-				? 'snow'
-				: code >= 95 && code <= 99
-				? 'thunderstorm'
-				: 'clear';
+					? 'clouds'
+					: code >= 45 && code <= 48
+						? 'mist'
+						: code >= 51 && code <= 67
+							? 'rain'
+							: code >= 71 && code <= 86
+								? 'snow'
+								: code >= 95 && code <= 99
+									? 'thunderstorm'
+									: 'clear';
 
 		const messages = {
 			clear: {
@@ -155,16 +157,27 @@ export default function Hero() {
 			hour < 12
 				? 'Good morning 🌅'
 				: hour < 17
-				? 'Good afternoon ☀️'
-				: 'Good evening 🌙'
+					? 'Good afternoon ☀️'
+					: 'Good evening 🌙',
 		);
 
 		setTimeStatus(getTimeStatus());
 
+		let currentIndex = 0;
+		setTypedSubtitle('');
+		const typingInterval = window.setInterval(() => {
+			currentIndex += 1;
+			setTypedSubtitle(subtitleText.slice(0, currentIndex));
+
+			if (currentIndex >= subtitleText.length) {
+				window.clearInterval(typingInterval);
+			}
+		}, 45);
+
 		const fetchWeather = async () => {
 			try {
 				const res = await fetch(
-					'https://api.open-meteo.com/v1/forecast?latitude=13.0827&longitude=80.2707&current=temperature_2m,relative_humidity_2m,weather_code&timezone=Asia%2FKolkata'
+					'https://api.open-meteo.com/v1/forecast?latitude=13.0827&longitude=80.2707&current=temperature_2m,relative_humidity_2m,weather_code&timezone=Asia%2FKolkata',
 				);
 				const data = await res.json();
 				if (data.current) {
@@ -182,6 +195,10 @@ export default function Hero() {
 		};
 
 		fetchWeather();
+
+		return () => {
+			window.clearInterval(typingInterval);
+		};
 	}, []);
 
 	const scrollToAbout = () => {
@@ -193,7 +210,7 @@ export default function Hero() {
 	return (
 		<section
 			id='hero'
-			className='min-h-screen flex items-center justify-center relative overflow-hidden pt-40'
+			className='min-h-screen flex items-center justify-center relative overflow-hidden pt-64 md:pt-80'
 		>
 			<div className='absolute inset-0'>
 				{[...Array(20)].map((_, i) => (
@@ -253,7 +270,8 @@ export default function Hero() {
 					</h1>
 
 					<p className='text-xl md:text-2xl text-white/80 max-w-2xl mx-auto animate-fade-in'>
-						Data Analyst & Finance Enthusiast
+						{typedSubtitle}
+						<span className='ml-1 inline-block animate-pulse'>|</span>
 					</p>
 
 					<div className='flex flex-col sm:flex-row gap-4 justify-center items-center mt-8'>
