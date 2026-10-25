@@ -3,12 +3,34 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Github, ExternalLink } from 'lucide-react';
 
 export default function Projects() {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: '-100px' });
 
 	const projects = [
+		{
+			title: 'Autonomous Dynamic Route Engine',
+			year: '2026',
+			description: [
+				'Engineered an enterprise-grade dynamic routing engine solving real-time disruption replanning (VRPTW) in under 5ms, integrating pyvroom (C++ VROOM engine) for ultra-fast heuristic local search.',
+				'Developed temporal route slicing, state-freezing, kinematic vehicle translation, dynamic fleet re-allocation for vehicle breakdowns, and dynamic Euclidean distance matrix expansion for rush orders.',
+				'Built an interactive Streamlit simulation dashboard featuring live Plotly route maps, moving vehicle spatial interpolation, and real-time operational fleet telemetry.',
+			],
+			tech: [
+				'Python',
+				'pyvroom',
+				'C++',
+				'VRPTW',
+				'Streamlit',
+				'Plotly',
+				'Algorithms',
+			],
+			github: 'https://github.com/ByteForceDev/NEXAI-2026-Hackathon',
+			live: 'https://byteforcedev-nexai2026.streamlit.app/',
+			color: 'from-emerald-500 to-teal-600',
+		},
 		{
 			title: 'CCTV Event Clip Extraction Pipeline',
 			year: '2026',
@@ -25,8 +47,8 @@ export default function Projects() {
 				'FFmpeg',
 				'Computer Vision',
 			],
-			github: 'https://github.com',
-			live: 'https://example.com',
+			github: 'https://github.com/ByteForceDev/ML-Based-CCTV-Video-Compression',
+			live: 'https://github.com/ByteForceDev/ML-Based-CCTV-Video-Compression',
 			color: 'from-blue-500 to-cyan-600',
 		},
 		{
@@ -42,10 +64,11 @@ export default function Projects() {
 		},
 	];
 
-	const handleProjectClick = (project) => {
-		// You can customize this behavior - open live demo, github, or both
+	const handleProjectClick = (project: (typeof projects)[number]) => {
 		if (project.live) {
 			window.open(project.live, '_blank', 'noopener,noreferrer');
+		} else if (project.github) {
+			window.open(project.github, '_blank', 'noopener,noreferrer');
 		}
 	};
 
@@ -116,6 +139,33 @@ export default function Projects() {
 											{tech}
 										</span>
 									))}
+								</div>
+
+								<div className='flex items-center gap-3 mt-6 pt-4 border-t border-white/10'>
+									{project.github && (
+										<a
+											href={project.github}
+											target='_blank'
+											rel='noopener noreferrer'
+											onClick={(e) => e.stopPropagation()}
+											className='inline-flex items-center gap-1.5 text-xs md:text-sm text-white/80 hover:text-white transition-colors py-1.5 px-3 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10'
+										>
+											<Github className='w-4 h-4' />
+											<span>Code</span>
+										</a>
+									)}
+									{project.live && (
+										<a
+											href={project.live}
+											target='_blank'
+											rel='noopener noreferrer'
+											onClick={(e) => e.stopPropagation()}
+											className='inline-flex items-center gap-1.5 text-xs md:text-sm text-white/80 hover:text-white transition-colors py-1.5 px-3 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10'
+										>
+											<ExternalLink className='w-4 h-4' />
+											<span>Live Demo</span>
+										</a>
+									)}
 								</div>
 
 								{/* Click indicator */}

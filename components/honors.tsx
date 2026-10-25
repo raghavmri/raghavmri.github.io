@@ -18,6 +18,12 @@ export default function Honors() {
 
 	const honors = [
 		{
+			title: '3rd Place, NexAI Hack 2026',
+			organization: 'NexAI 2026, VIT',
+			date: 'Oct 2026',
+			year: '2026',
+		},
+		{
 			title: 'Bug Bounty Reward - Open Redirection',
 			organization: 'FYERS Securities Pvt. Ltd.',
 			date: 'Nov 2024',
